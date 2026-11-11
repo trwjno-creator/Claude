@@ -598,13 +598,13 @@ def s20(c):
         cards.append(cd)
         pop_in(cd, 6 + i * 6, 8)
         n = text3d(str(i + 1), (0, -0.03, -0.38), size=0.14, m='#ffffff', font=BOLD, parent=cd)
-    j = jane(loc=(0.35, -0.5, 0), rot=PI * 0.92)
+    j = jane(loc=(0.62, -0.75, 0), rot=PI * 0.9)
     life(c, j, 100)
     j.arm(1, 10, (-1.0, 0, -0.3))
     j.look(30, -0.25, 0)
     point((0, -0.6, 3.0), 220, '#fff0d0', 0.8)
     cam, t = camera((0, -2.2, 1.8), (0, 1.2, 1.7), 30)
-    cam_move(cam, t, c, (-0.2, -3.0, 1.45), (-0.05, -2.5, 1.55), (0, 1.2, 1.65), (0, 1.2, 1.75))
+    cam_move(cam, t, c, (-0.1, -3.0, 1.5), (0.0, -2.55, 1.6), (0.05, 1.2, 1.7), (0.05, 1.2, 1.8))
 
 def s21(c):
     setup_render(sky='#3a0a0a', sky_strength=0.5)
@@ -638,8 +638,8 @@ def park_set(seed=0, evening=False, trees=None):
 
 def s22(c):
     park_set(1)
-    j = jane(loc=(-0.55, 0.6, 0), rot=-PI / 2)
-    sh = sheriff(loc=(0.55, 0.6, 0), rot=PI / 2)
+    j = jane(loc=(-0.55, 0.6, 0), rot=PI * 0.45)
+    sh = sheriff(loc=(0.55, 0.6, 0), rot=-PI * 0.45)
     life(c, j, 120); life(c, sh, 121)
     j.brows_set(1, -0.4); sh.brows_set(1, 0.3)
     f1 = int(c.n * 0.5)
