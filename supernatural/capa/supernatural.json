@@ -1,0 +1,22 @@
+{
+  "video": "../Supernatural_2m30_9x16.mp4",
+  "saida": "capa_supernatural.png",
+  "numero": "002",
+  "cor": "#E5172F",
+  "cor2": "#FFC93C",
+  "escuro": "#12030A",
+  "kicker": "RESUMO COMPLETO",
+  "titulo": ["SUPER", "NATURAL"],
+  "chips": ["TERROR", "FANTASIA", "2005–2020"],
+  "heroi": {"img": "frames/heroi.png", "crop": [0, 780, 1080, 1275]},
+  "tag_heroi": "ASSISTA ATÉ O FIM",
+  "duracao": "2:30",
+  "cenas": [
+    {"img": "frames/cena1.png", "rotulo": "O incêndio", "crop": [0, 560, 1080, 1400]},
+    {"img": "frames/cena2.png", "rotulo": "Os monstros", "crop": [0, 640, 1080, 1480]},
+    {"img": "frames/cena3.png", "rotulo": "O anjo", "crop": [60, 700, 1020, 1327]}
+  ],
+  "gancho": "Quem matou a mãe?",
+  "stats": [["15", "temporadas"], ["327", "episódios"], ["2:30", "de resumo"]],
+  "rodape": "SIGA PARA <em>MAIS SÉRIES</em> ➜"
+}
