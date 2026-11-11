@@ -62,7 +62,12 @@ def baby(parent=None, loc=(0, 0, 0)):
 
 def ghostify(ch, color='#8fbaff'):
     m = mat(color, 0.6, emit=0.35)
+    keep = set()
+    for e in ch.eyes + ch.brows + [ch.mouth]:      # mantem olhos, sobrancelhas e boca
+        keep |= set(e.children_recursive)
     for o in ch.root.children_recursive:
+        if o in keep:
+            continue
         if o.type in ('MESH', 'CURVE') and o.data.materials:
             for i in range(len(o.data.materials)):
                 o.data.materials[i] = m
