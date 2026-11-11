@@ -534,7 +534,7 @@ def s18(c):
     talk(c, carter, 1, int(c.n * 0.6), 0.8)
     j = jane(loc=(-0.5, 0.6, 0), rot=PI * 0.4)
     j.sit(); life(c, j, 81)
-    chair((-0.55, 0.62, 0), PI * 0.4 + PI, '#ff7eb6'); chair((0.55, 0.67, 0), -PI * 0.4 + PI, '#ff7eb6')
+    chair((-0.58, 0.61, 0), PI * 0.4, '#ff7eb6'); chair((0.58, 0.67, 0), -PI * 0.4, '#ff7eb6')
     j.brows_set(10, -0.4)
     f1 = int(c.n * 0.68)
     j.arm(1, f1 - 6, (-0.4, 0, 0))
@@ -711,7 +711,7 @@ def s25(c):
     agent.arm(1, f1, (-1.2, 0, 0)); agent.arm(1, f1 + 18, (-1.4, 0, -0.3))
     talk(c, agent, int(c.n * 0.3), c.n, 0.8)
     j = jane(loc=(-0.62, 0.8, 0), rot=PI * 0.4, beard='#b8892e')
-    chair((-0.66, 0.82, 0), PI * 0.4 + PI, '#2a3a6a'); chair((0.66, 0.82, 0), -PI * 0.4 + PI, '#2a3a6a')
+    chair((-0.68, 0.82, 0), PI * 0.4, '#2a3a6a'); chair((0.68, 0.82, 0), -PI * 0.4, '#2a3a6a')
     j.sit(); life(c, j, 151); j.root.location.z = 0.05
     j.brows_set(f1 + 20, 0.25)
     sun(rot=(0.8, 0.1, 0.5), energy=2.8)
