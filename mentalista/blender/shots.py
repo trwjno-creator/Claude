@@ -400,14 +400,16 @@ def s14(c):
     j = jane(loc=(-0.75, 0.75, 0), rot=PI * 0.62)
     life(c, sus, 42); life(c, j, 43)
     # relogio de bolso pendurado (hipnose)
-    j.arm(1, 1, (-1.35, 0.0, 0.3))
-    piv = empty("piv", (0, 0, -0.47), j.arms[1])
-    cyl(0.004, 0.22, (0, 0, -0.11), m=mat('#ffd23f', 0.2, metal=1), parent=piv)
-    w = cyl(0.06, 0.02, (0, 0, -0.25), (PI / 2, 0, 0), m=mat('#ffd23f', 0.15, metal=1), parent=piv)
-    cyl(0.05, 0.022, (0, 0, -0.25), (PI / 2, 0, 0), m='#ffffff', parent=piv)
+    j.arm(1, 1, (-1.9, 0.0, 0.0))
+    comp = empty("comp", (0, 0, -0.47), j.arms[1], rot=(1.9, 0, 0))   # compensa o braco: corrente pende p/ baixo
+    orient = empty("orient", (0, 0, 0), comp, rot=(0, 0, -PI * 0.62))  # anula a rotacao do Jane
+    piv = empty("piv", (0, 0, 0), orient)
+    cyl(0.005, 0.24, (0, 0, -0.12), m=mat('#ffd23f', 0.2, metal=1), parent=piv)
+    w = cyl(0.065, 0.022, (0, 0, -0.29), (PI / 2, 0, 0), m=mat('#ffd23f', 0.15, metal=1), parent=piv)
+    cyl(0.053, 0.026, (0, 0, -0.29), (PI / 2, 0, 0), m='#ffffff', parent=piv)
     f1 = int(c.n * 0.55)
     for f in range(1, f1, 2):
-        piv.rotation_euler = (0, 0.5 * math.sin(f / 9.0), 0); piv.keyframe_insert('rotation_euler', frame=f)
+        piv.rotation_euler = (0, 0.55 * math.sin(f / 9.0), 0); piv.keyframe_insert('rotation_euler', frame=f)
     j.arm(1, f1 + 6, (-0.1, 0.12, 0))
     # olhos do suspeito acompanham o relogio
     for f in range(1, f1, 4):
