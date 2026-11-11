@@ -623,7 +623,7 @@ def s21(c):
 def park_set(seed=0, evening=False, trees=None):
     setup_render(sky='#ffb36b' if evening else '#8fd6ff')
     floor('#5ccf5c', 100)
-    box((80, 0.2, 40), (0, 25, 15), m=mat('#ffb36b' if evening else '#8fd6ff', 1.0))
+    box((80, 0.2, 40), (0, 25, 15), m=mat('#ffb36b' if evening else '#8fd6ff', 1.0, emit=1.0))
     if evening:
         sphere(2.5, (3, 24, 5), m=mat('#fff0a0', emit=3))
     for i, (x, y) in enumerate(trees or [(-3.5, 4), (3.8, 5), (-6, 9), (6.5, 10), (0.5, 12), (-1.8, 7)]):
@@ -738,7 +738,7 @@ def s26(c):
 def s27(c):
     setup_render(sky='#ffb3c7')
     floor('#7fd67f', 100)
-    box((80, 0.2, 40), (0, 25, 15), m=mat('#ffc6a8', 1.0))
+    box((80, 0.2, 40), (0, 25, 15), m=mat('#ffb3a0', 1.0, emit=1.0))
     sphere(3, (0, 24, 4), m=mat('#fff0b0', emit=2.5))
     for i, (x, y) in enumerate([(-3.5, 5), (3.8, 6), (-6, 10), (6.5, 10)]):
         tree((x, y, 0), 1.3, '#4fcf6f', seed=200 + i)
@@ -788,12 +788,13 @@ def s29(c):
     setup_render(sky='#ff9a6b')
     floor('#f2c38a', 100)
     sea = box((80, 40, 0.1), (0, 22, 0.02), m=mat('#ff8a7a', 0.15))
-    box((80, 0.2, 40), (0, 40, 15), m=mat('#ffb08a', 1.0))
-    sphere(3.2, (0, 38, 3.0), m=mat('#ffe9a0', emit=3))
+    box((80, 0.2, 40), (0, 40, 15), m=mat('#ff9f7a', 1.0, emit=1.0))
+    box((80, 0.2, 6), (0, 39.8, 1.5), m=mat('#ffc58a', 1.0, emit=1.0))
+    sphere(3.2, (0, 38, 5.5), m=mat('#fff0b0', emit=3))
     for i, (x, z) in enumerate([(-7, 8), (6, 10), (-2, 12)]):
         cloud((x, 36, z), 2.2, 30 + i, color='#ffd3e0')
-    j = jane(loc=(-0.3, 0.3, 0), rot=PI * 0.36)
-    L = lisbon(loc=(0.3, 0.3, 0), rot=-PI * 0.36)
+    j = jane(loc=(-0.36, 0.3, 0), rot=PI * 0.33)
+    L = lisbon(loc=(0.36, 0.3, 0), rot=-PI * 0.33)
     life(c, j, 190, 0.6); life(c, L, 191, 0.6)
     f1 = int(c.n * 0.55)
     key(L.mouth, 'scale', f1, (1, 1, 0.35)); key(L.mouth, 'scale', f1 + 15, (1.5, 1, 0.55))
