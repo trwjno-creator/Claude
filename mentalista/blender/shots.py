@@ -263,7 +263,7 @@ def s08(c):
     hide_between(cracks, f1, None)
     cracks.scale = (1, 1, 1)
     # Jane ajoelhado (de costas p/ camera, lado)
-    j = jane(loc=(-0.75, 0.35, 0), rot=PI * 0.72)
+    j = jane(loc=(0.55, 0.15, 0), rot=-PI * 0.68)
     j.kneel()
     j.look(10, 0.4, 0); j.arm(0, 20, (-0.3, 0, 0)); j.arm(1, 20, (-0.3, 0, 0))
     life(c, j, 9, 0.4)
@@ -271,9 +271,10 @@ def s08(c):
     point((0, 0.2, 2.0), 90, '#ffd8b0', 0.4)
     point((-1.5, -1, 2.2), 50, '#7f8cff', 1)
     cam, t = camera((0, -0.4, 1.2), (0, 0.95, 1.12), 50)
+    keys(cam.data, 'lens', [(f1 + 30, 50), (c.n, 32)])
     cam_move(cam, t, c, (0.05, 0.0, 1.18), (-0.05, 0.25, 1.15), (0, 0.95, 1.12), (0, 0.95, 1.12))
     key(cam, 'location', f1 + 30, (-0.05, 0.25, 1.15))
-    key(cam, 'location', c.n, (-0.05, 0.8, 1.2)); key(t, 'location', f1 + 30, (0, 0.95, 1.12)); key(t, 'location', c.n, (-0.75, 0.35, 0.9))
+    key(cam, 'location', c.n, (-0.9, 1.0, 1.35)); key(t, 'location', f1 + 30, (0, 0.95, 1.12)); key(t, 'location', c.n, (0.5, 0.15, 0.88))
 
 def s09(c):
     setup_render(sky='#d8fff4', sky_strength=0.9)
