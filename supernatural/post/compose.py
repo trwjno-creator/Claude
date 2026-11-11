@@ -146,8 +146,8 @@ def bar_img(text, color, fill_frac_q):
     return im
 
 @lru_cache(maxsize=64)
-def check_row(emoji, text, done):
-    w, hgt = 640, 104
+def check_row(emoji, text, done, w=640):
+    hgt = 104
     im = Image.new('RGBA', (w + 12, hgt + 12), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     d.rounded_rectangle((6, 6, 6 + w, 6 + hgt), radius=34, fill=(255, 255, 255), outline=OUT, width=6)
     em = emoji_img(emoji, 64)
@@ -395,10 +395,12 @@ def render_frame(frames_dir, gf):
             paste_center(canvas, im, W / 2, o.get('y', 440), ease_pop(k))
         elif o['t'] == 'check':
             y0 = o.get('y', 470)
+            fnt = font('Montserrat.ttf', 40, b'ExtraBold')
+            cw = max(640, max(int(fnt.getlength(it[1])) for it in o['items']) + 230)
             for r, ((em, tx, _), fi) in enumerate(zip(o['items'], o['fi'])):
                 kk = lf - fi
                 if kk < 0: continue
-                im = check_row(em, tx, kk >= 5)
+                im = check_row(em, tx, kk >= 5, cw)
                 paste_center(canvas, im, W / 2, y0 + r * 124, ease_pop(kk, 6))
     # icone: so o mais recente visivel
     if icons:

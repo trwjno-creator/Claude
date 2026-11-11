@@ -333,19 +333,20 @@ def s10(c):
     w = Char(name='wolf', skin='#8a6a4a', hair='#5a3a22', hair_style='short', jacket='#6a5a4a', vest=None, collar=False,
              eye_mode='yellow', fangs=True, pointy_ears=True, beard='#5a3a22', shoes='#5a3a22')
     dm = generic_person(331, (0, 0, 0), jacket='#2a2a2a', pants='#2a2a2a', female=False, hair_style='short', hair='#2a2a2a', eye_mode='black')
-    xs = [-0.9, -0.3, 0.3, 0.9]
-    words = [0.15, 0.32, 0.5, 0.68]
+    xs = [-0.78, -0.26, 0.26, 0.78]
+    pops = [1, 31, 56, 85]          # sincronizado com 'fantasmas', 'vampiros', 'lobisomens', 'demonios'
     for i, ch in enumerate([g, v, w, dm]):
         ch.root.location = (xs[i], 0.4 + 0.15 * abs(xs[i]), 0)
         ch.root.rotation_euler = (0, 0, xs[i] * 0.25)
         life(c, ch, 40 + i)
-        pop_in(ch.root, int(c.n * words[i]), 8, 1.1)
+        if pops[i] > 1:
+            pop_in(ch.root, pops[i], 8, 1.1)
         key(ch.mouth, 'scale', 1, (1.2, 1, 1.0))
     ch = None
     point((0, -1.2, 2.6), 200, '#c9a8ff', 1.5)
     point((0, 1.5, 0.6), 120, '#7a3aff', 1.0)
-    cam, t = camera((0, -3.0, 1.3), (0, 0.4, 1.15), 30)
-    cam_move(cam, t, c, (0, -3.3, 1.2), (0, -2.6, 1.3), (0, 0.4, 1.15), (0, 0.4, 1.2))
+    cam, t = camera((0, -3.0, 1.3), (0, 0.4, 1.15), 26)
+    cam_move(cam, t, c, (0, -3.5, 1.2), (0, -3.0, 1.28), (0, 0.4, 1.15), (0, 0.4, 1.2))
 
 def s11(c):
     setup_render(sky='#d8f0f0')
