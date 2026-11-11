@@ -721,13 +721,13 @@ def s25(c):
 
 def s26(c):
     cbi_office(extra=False)
-    j = jane(loc=(-0.4, 0.3, 0), rot=-0.2)
+    j = jane(loc=(-0.4, 0.3, 0), rot=0.15)
     life(c, j, 160)
     talk(c, j, 1, int(c.n * 0.35))
     j.arm(1, 10, (-0.3, 0, 0)); j.arm(1, 22, (-1.5, 0, 0.0))  # dedo levantado "1 condicao"
     f1 = int(c.n * 0.45)
-    j.arm(1, f1 + 6, (-1.3, 0, -0.9))  # aponta para Lisbon
-    j.look(f1, 0, -0.5)
+    j.arm(1, f1 + 6, (-1.35, 0, 0.95))  # aponta para Lisbon (direita)
+    j.look(f1, 0, 0.55)
     L = lisbon(loc=(1.3, 0.0, 0), rot=PI * 0.3)
     L.walk(f1, int(c.n * 0.85), (2.8, 0.3, 0), (0.45, 0.25, 0), 1.8)
     key(L.root, 'rotation_euler', f1, (0, 0, PI * 0.5)); key(L.root, 'rotation_euler', int(c.n * 0.85), (0, 0, PI * 0.5)); key(L.root, 'rotation_euler', int(c.n * 0.85) + 8, (0, 0, 0.2))
