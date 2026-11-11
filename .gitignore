@@ -3,3 +3,5 @@ mentalista/audio/tts/*.wav
 __pycache__/
 *.pyc
 mentalista/blender/*.blend1
+supernatural/frames/
+supernatural/audio/tts/*.wav
