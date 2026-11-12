@@ -566,7 +566,6 @@ function m1Map(u) { // plano de fuga num papel de bala
     ctx.fillStyle = '#d00000'; ctx.font = `900 22px ${FONT}`; ctx.textAlign = 'center'; ctx.fillText('SAÍDA', 120, -102);
   }
   ctx.restore();
-  caption('PLANO DE FUGA', 270, 150, 50, { scale: popScale(u - .05), fill: '#fff' });
 }
 function m2Hose(u) { // escalando a mangueira
   ctx.fillStyle = '#1d1730'; ctx.fillRect(0, 0, W, H);
@@ -590,7 +589,6 @@ function m2Hose(u) { // escalando a mangueira
   ctx.fillStyle = '#8fd3ff';
   for (let k = 0; k < 4; k++) { const ph = (u * 1.7 + k / 4) % 1; circle(hx - 70 - ph * 60 * (k % 2 ? 1 : -.4), hy - 120 + ph * ph * 160, 5); ctx.fill(); }
   ctx.restore();
-  caption('ESCALAR A MANGUEIRA', 270, 150, 38, { scale: popScale(u - .05) });
 }
 function m3Lint(u) { // fugindo do monstro de fiapos
   const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#120a22'); g.addColorStop(1, '#3a2a55');
@@ -626,7 +624,6 @@ function m3Lint(u) { // fugindo do monstro de fiapos
   ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 4;
   for (let k = 0; k < 3; k++) { ctx.beginPath(); ctx.moveTo(320 - k * 6, 640 + k * 40 - hop); ctx.lineTo(280 - k * 10, 640 + k * 40 - hop); ctx.stroke(); }
   caption('GRRRR!', 150, 360, 52, { scale: popScale(u - .2) * (1 + .05 * Math.sin(u * 40)), fill: '#ff4d6d', stroke: OUT, rot: -.15 });
-  caption('O MONSTRO DE FIAPOS', 270, 150, 38, { scale: popScale(u - .05) });
 }
 function m4Sling(u) { // estilingue de elástico
   ctx.fillStyle = '#1d1730'; ctx.fillRect(0, 0, W, H);
@@ -657,7 +654,6 @@ function m4Sling(u) { // estilingue de elástico
     for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.moveTo(hx - 30 + k * 18, hy + 90); ctx.lineTo(hx - 70 + k * 18, hy + 200); ctx.stroke(); }
   }
   sfxText('TWANG!', 300, 330, 70, u - rel, -.1);
-  caption('ESTILINGUE!', 270, 150, 44, { scale: popScale(u - .05) });
 }
 function m5Fly(u) { // voo em câmera lenta
   ctx.save(); ctx.translate(270, 480); ctx.scale(1.15, 1.15); ctx.translate(-270, -480); laundryBg(); ctx.restore();
@@ -672,7 +668,6 @@ function m5Fly(u) { // voo em câmera lenta
   drawSock(hx, hy, 1.7, { rot: rot + flap, sx: 1.08, sy: .95, eyes: { mode: 'closed' }, mouth: 'grin', blush: true });
   const vg = ctx.createRadialGradient(270, 480, 200, 270, 480, 700); vg.addColorStop(0, 'rgba(255,255,255,0)'); vg.addColorStop(1, 'rgba(255,230,180,.55)');
   ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
-  caption('LIBERDADE!!!', 270, 150, 52, { scale: popScale(u - .1), fill: '#ffd60a', stroke: OUT });
 }
 
 // ---------- CENA 5: o reencontro... só que não ----------
@@ -756,6 +751,7 @@ function scene5(t) {
     ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);
     for (let i = 0; i < 14; i++) { const hx = 40 + hash(i) * 460, hy = 900 - ((t - 25.3) * (60 + hash(i + 2) * 80) + hash(i + 5) * 500) % 900; heartPath(hx, hy, 10 + hash(i + 1) * 12); ctx.globalAlpha = .75 * a; fs('#ff4d8d', null); ctx.globalAlpha = 1; }
   }
+  if (t > 27.45 && t < 28.7) brokenHeart(hb.x + 6, 405, 34, t - 27.45);
   if (t > 27.45 && t < 27.6) { ctx.fillStyle = `rgba(255,255,255,${.8 * (1 - inv(27.45, 27.6, t))})`; ctx.fillRect(0, 0, W, H); }
   // balão "faz 3 semanas..."
   if (t > 28.0 && t < 30.0) {
@@ -838,6 +834,65 @@ function scene6c(t) { // jogada de volta na máquina, liga e zoom
   }
 }
 
+// ---------- coração partido ----------
+function brokenHeart(x, y, r, u) {
+  const crack = [[0, -.45], [-.18, -.1], [.15, .15], [-.1, .45], [0, .9]];
+  const sep = easeIn(inv(.22, 1.0, u)), a = clamp((1.25 - u) / .3), s = popScale(u) * r;
+  [-1, 1].forEach(side => {
+    ctx.save(); ctx.globalAlpha = a;
+    ctx.translate(x + side * sep * 40, y + sep * sep * 140); ctx.rotate(side * sep * .7);
+    ctx.beginPath(); ctx.moveTo(0, -s * 2);
+    crack.forEach(([cx, cy]) => ctx.lineTo(cx * s, cy * s));
+    ctx.lineTo(0, s * 2); ctx.lineTo(side * s * 2, s * 2); ctx.lineTo(side * s * 2, -s * 2); ctx.closePath(); ctx.clip();
+    heartPath(0, 0, s); fs('#ff2e63', OUT, 4);
+    ctx.fillStyle = 'rgba(255,255,255,.6)'; circle(-s * .5, -s * .3, s * .18); ctx.fill();
+    ctx.restore();
+  });
+  if (u > .2) { ctx.save(); ctx.globalAlpha = a; ctx.beginPath(); crack.forEach(([cx, cy], i) => ctx[i ? 'lineTo' : 'moveTo'](x + cx * s, y + cy * s)); if (sep < .05) fs(null, OUT, 4); ctx.restore(); }
+}
+
+// ---------- legendas da narração (palavra por palavra) ----------
+const PAGES = (() => {
+  const S = window.SUBS || [], pages = []; let cur = null;
+  S.forEach(w => {
+    if (!cur || cur.line !== w.line || cur.words.length >= 3 || cur.chars + w.w.length > 15) { cur = { line: w.line, words: [], chars: 0 }; pages.push(cur); }
+    cur.words.push(w); cur.chars += w.w.length + 1;
+  });
+  pages.forEach((p, i) => {
+    const nx = pages[i + 1], end = p.words[p.words.length - 1].t1 + .35, nx0 = nx ? nx.words[0].t0 - .04 : 1e9;
+    p.t0 = p.words[0].t0 - .04; p.t1 = Math.min(nx && nx.line === p.line ? nx0 : end, nx0);
+    if (p.t0 < 39.6) p.t1 = Math.min(p.t1, 39.58);
+  });
+  return pages;
+})();
+function subY(t) {
+  if (t < 2) return 300;
+  if (t >= 6 && t < 14) return 335;
+  if (t >= 32.3 && t < 34) return 330;
+  return 175;
+}
+function drawSubs(t) {
+  const p = PAGES.find(p => t >= p.t0 && t < p.t1); if (!p) return;
+  const size = 50, y = subY(t);
+  ctx.save(); ctx.font = `900 ${size}px ${FONT}`; ctx.textBaseline = 'middle'; ctx.textAlign = 'left'; ctx.lineJoin = 'round';
+  const words = p.words.map(w => w.w.toUpperCase()), gap = size * .42;
+  const ws = words.map(w => ctx.measureText(w).width), total = ws.reduce((a, b) => a + b, 0) + gap * (words.length - 1);
+  const fit = Math.min(1, 470 / (total * 1.07)), pin = popScale((t - p.t0) * 1.6);
+  ctx.translate(270, y); ctx.scale(fit * (.85 + .15 * pin), fit * (.85 + .15 * pin)); ctx.globalAlpha = clamp((t - p.t0) / .04);
+  let x = -total / 2;
+  p.words.forEach((w, i) => {
+    const active = t >= w.t0 - .03 && (t < w.t1 + .06 || i === p.words.length - 1 && t >= w.t0);
+    const said = t >= w.t0 - .03, s = active ? 1 + .07 * popScale((t - w.t0) * 2.2) : 1;
+    ctx.save(); ctx.translate(x + ws[i] / 2, 0); ctx.scale(s, s); ctx.rotate(active ? -.03 : 0);
+    ctx.fillStyle = 'rgba(0,0,0,.4)'; ctx.fillText(words[i], -ws[i] / 2 + 3, 6);
+    ctx.lineWidth = 11; ctx.strokeStyle = '#111'; ctx.strokeText(words[i], -ws[i] / 2, 0);
+    ctx.fillStyle = active ? '#ffd60a' : (said ? '#fff' : 'rgba(255,255,255,.88)'); ctx.fillText(words[i], -ws[i] / 2, 0);
+    ctx.restore();
+    x += ws[i] + gap;
+  });
+  ctx.restore();
+}
+
 // ---------- montagem ----------
 let SHAKE = 0;
 function shakeAdd(v) { SHAKE += v; }
@@ -888,6 +943,7 @@ function draw(t) {
   // legenda do gancho (início e fim, para o loop)
   if (t < 2) caption('POV: você é a\nmeia que sumiu', 270, 150, 48, { alpha: clamp((2 - t) / .15) });
   else if (t > 39.6) caption('POV: você é a\nmeia que sumiu', 270, 150, 48, { scale: easeBack(inv(39.6, 39.85, t)) });
+  drawSubs(t);
   // vinheta
   const vg = ctx.createRadialGradient(270, 480, 300, 270, 480, 640); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.28)');
   ctx.fillStyle = vg; ctx.fillRect(0, 0, W, H);

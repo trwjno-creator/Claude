@@ -4,6 +4,7 @@ set -e
 cd "$(dirname "$0")"
 F=${FRAMES:-/tmp/cade_frames}
 [ -n "$SKIP_RENDER" ] || { rm -rf "$F"; node render.js "$F" 30 4; }
+[ -n "$NEW_VOICE" ] && python3 audio/gen_narration.py   # precisa de internet (edge-tts)
 python3 audio/audio.py
 ffmpeg -v error -y -framerate 30 -i "$F/f%05d.jpg" -i audio/mix.wav \
   -map 0:v -map 1:a -c:v libx264 -preset slow -crf 19 -pix_fmt yuv420p -profile:v high -r 30 \

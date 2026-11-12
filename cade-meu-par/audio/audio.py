@@ -219,9 +219,33 @@ add(sfx, 38.45, whoosh(.9, 300, 4000), .5)                                  # zo
 ir_t = T(1.6); ir = rng.standard_normal((len(ir_t), 2)) * np.exp(-ir_t / .45)[:, None]
 ir[:, 0] = filt(ir[:, 0], 5000); ir[:, 1] = filt(ir[:, 1], 5000); ir /= np.sqrt((ir ** 2).sum(0))
 wet = np.stack([fftconvolve(verb_send[:, c], ir[:, c])[:N] for c in range(2)], 1) * .5
-mix = music * .8 + sfx + wet
-mix = filt(mix.T, 25, 'high').T
-mix /= np.max(np.abs(mix)) + 1e-9; mix = np.tanh(mix * 1.4) / np.tanh(1.4) * .9
+bed = music * .8 + sfx + wet
+bed = filt(bed.T, 25, 'high').T
+bed /= np.max(np.abs(bed)) + 1e-9
+
+# ---------- narração (voz de trailer) ----------
+import soundfile as sf
+nar, _ = sf.read(os.path.join(os.path.dirname(__file__), 'narration.wav'))
+nar = filt(nar, 75, 'high')
+nar = nar + .45 * filt(nar, 220) + .3 * filt(nar, [2500, 6000], 'band')     # corpo + presença
+lvl = np.maximum(filt(np.abs(nar), 25), 1e-6)                                          # compressor 4:1
+thr = np.percentile(lvl[lvl > 1e-3], 60)
+nar *= np.where(lvl > thr, (thr / lvl) ** .75, 1.0)
+nar /= np.max(np.abs(nar)) + 1e-9
+nv = np.zeros((N, 2)); nv[:, 0] = nar; nv[:, 1] = nar
+nwet = np.stack([fftconvolve(nar * .12, ir[:, c])[:N] for c in range(2)], 1)  # leve ambiência
+# ducking: música e efeitos abaixam enquanto a voz fala
+act = np.clip(filt(np.abs(nar), 6) / (np.percentile(filt(np.abs(nar), 6), 99) * .35), 0, 1)
+act = filt(act, 4)                                                          # suaviza o retorno
+duck = 1 - .62 * np.clip(act, 0, 1)
+voice_mask = act > .2
+bed_rms = np.sqrt(np.mean(bed[voice_mask] ** 2)) if voice_mask.any() else 1
+bed *= duck[:, None]
+nar_rms = np.sqrt(np.mean(nv[voice_mask] ** 2))
+gv = bed_rms * 2.4 / nar_rms                                                 # voz ~7.6 dB acima da trilha
+mix = bed + (nv + nwet) * gv
+mix /= np.max(np.abs(mix)) + 1e-9; mix = np.tanh(mix * 1.3) / np.tanh(1.3) * .9
+print('ganho voz', round(gv, 2))
 f = int(.004 * SR); mix[:f] *= np.linspace(0, 1, f)[:, None]; mix[-f:] *= np.linspace(1, 0, f)[:, None]
 out = os.path.join(os.path.dirname(__file__), 'mix.wav')
 with wave.open(out, 'wb') as w:

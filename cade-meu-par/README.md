@@ -7,6 +7,29 @@ e o vídeo emenda no primeiro quadro.
 
 **Vídeo final:** `CadeMeuPar_40s_9x16.mp4` (1080×1920, 30 fps, H.264 + AAC, -14 LUFS)
 
+## Narração (estilo trailer de cinema)
+Legendas animadas palavra por palavra (a palavra falada acende em amarelo), para quem assiste sem som.
+
+| Tempo | Fala |
+|---|---|
+| 0,0 s | Toda semana, uma meia desaparece. |
+| 2,2 s | E ninguém nunca perguntou pra onde elas vão. |
+| 6,9 s | Bem-vinda ao Reino das Meias Perdidas. |
+| 9,5 s | Tampas, elásticos... e o seu fone sem fio. |
+| 14,1 s | Mas ela tinha um plano. |
+| 16,1 s | Escalar o impossível. |
+| 18,1 s | Enfrentar o terror. |
+| 20,1 s | E voar... |
+| 22,1 s | ...de volta pro grande amor. |
+| 25,3 s | Até que... ela encontrou seu par. |
+| 28,1 s | *(o par, sem graça)* Faz três semanas... |
+| 30,4 s | Tem história que não tem final feliz. |
+| 32,4 s | E sabe o pior? |
+| 35,9 s | Ela não foi a primeira. |
+| 38,0 s | E não vai ser a última. → *(loop)* Toda semana, uma meia desaparece. |
+
+A última fala emenda na primeira, então a narração também fecha em loop.
+
 ## Cenas
 | Tempo | Cena |
 |---|---|
@@ -21,11 +44,13 @@ e o vídeo emenda no primeiro quadro.
 ```bash
 ./make_video.sh            # renderiza os quadros (Playwright/Chromium), sintetiza o áudio e codifica
 SKIP_RENDER=1 ./make_video.sh   # só refaz o áudio e o encode, reaproveitando os quadros
+NEW_VOICE=1 ./make_video.sh     # também regera a narração (edge-tts, precisa de internet)
 ```
 - `anim.js`: toda a animação em canvas 2D; `draw(t)` é determinístico, então cada quadro é reproduzível.
 - `index.html`: abra no navegador para ver a prévia em tempo real (sem som).
 - `render.js`: exporta os quadros JPEG 1080×1920.
-- `audio/audio.py`: trilha e efeitos 100% sintetizados (numpy/scipy), sem samples externos.
+- `audio/gen_narration.py`: narração (edge-tts pt-BR) encaixada nas janelas de cada cena; gera `audio/narration.wav` e `subs.js` (tempo de cada palavra).
+- `audio/audio.py`: trilha e efeitos sintetizados (numpy/scipy), tratamento da voz e ducking da trilha sob a narração.
 
 ## Para postar
 **Legenda:** Agora você sabe pra onde elas vão 🧦💔 Já perdeu quantas?
