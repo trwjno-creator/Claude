@@ -230,7 +230,7 @@ def caption_at(t):
             return wd
     return None
 
-FIX = {'póve': 'POV', 'néd': 'Ned', 'stárk': 'Stark', 'uínterfél': 'Winterfell', 'kétlin': 'Catelyn', 'róbi': 'Robb',
+FIX = {'póve': 'POV', 'uésteros': 'Westeros', 'néd': 'Ned', 'stárk': 'Stark', 'uínterfél': 'Winterfell', 'kétlin': 'Catelyn', 'róbi': 'Robb',
        'sânsa': 'Sansa', 'ária': 'Arya', 'brân': 'Bran', 'ríkon': 'Rickon', 'djón': 'Jon', 'isnôu': 'Snow',
        'róbert': 'Robert', 'baratiôn': 'Baratheon', 'cérsei': 'Cersei', 'lânister': 'Lannister', 'djáime': 'Jaime',
        'dainéris': 'Daenerys', 'targárien': 'Targaryen', 'cál': 'Khal', 'drôgo': 'Drogo', 'djófri': 'Joffrey',
@@ -278,12 +278,12 @@ GRADE_VIG = None
 def grade(im):
     global GRADE_VIG
     im = ImageEnhance.Color(im).enhance(1.12)
-    im = ImageEnhance.Contrast(im).enhance(1.04)
+    im = ImageEnhance.Contrast(im).enhance(1.07)
     im = im.filter(ImageFilter.UnsharpMask(radius=1.6, percent=60, threshold=2))
     if GRADE_VIG is None:
         yy, xx = np.mgrid[0:H, 0:W]
         r = np.sqrt(((xx - W / 2) / (W * 0.75)) ** 2 + ((yy - H / 2) / (H * 0.75)) ** 2)
-        GRADE_VIG = np.clip(1 - 0.28 * np.clip(r - 0.45, 0, 1) ** 1.6, 0, 1)[..., None]
+        GRADE_VIG = np.clip(1 - 0.36 * np.clip(r - 0.42, 0, 1) ** 1.6, 0, 1)[..., None]
     a = (np.asarray(im).astype(np.float32) * GRADE_VIG).clip(0, 255).astype(np.uint8)
     return Image.fromarray(a)
 
@@ -409,7 +409,7 @@ def render_frame(frames_dir, gf):
             for r, ((em, tx, _), fi) in enumerate(zip(o['items'], o['fi'])):
                 kk = lf - fi
                 if kk < 0: continue
-                im = check_row(em, tx, kk >= 5, cw)
+                im = check_row(em, tx, kk >= 5 and not o.get('vote'), cw)
                 paste_center(canvas, im, W / 2, y0 + r * 124, ease_pop(kk, 6))
     # icone: so o mais recente visivel
     if icons:
