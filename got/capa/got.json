@@ -1,0 +1,22 @@
+{
+  "video": "../GameOfThrones_9x16.mp4",
+  "saida": "capa_got.png",
+  "numero": "005",
+  "cor": "#E5172F",
+  "cor2": "#FFC93C",
+  "escuro": "#12030A",
+  "kicker": "RESUMO COMPLETO",
+  "titulo": ["GAME OF ", "THRONES"],
+  "chips": ["FANTASIA", "DRAMA", "2011–2019"],
+  "heroi": {"img": "frames/heroi.png", "crop": [0, 560, 1080, 1150]},
+  "tag_heroi": "ASSISTA ATÉ O FIM",
+  "duracao": "2:52",
+  "cenas": [
+    {"img": "frames/cena1.png", "rotulo": "A cabeça do Ned", "crop": [0, 900, 1080, 1606]},
+    {"img": "frames/cena2.png", "rotulo": "Casamento Vermelho", "crop": [0, 560, 1080, 1266]},
+    {"img": "frames/cena3.png", "rotulo": "O trono derrete", "crop": [0, 760, 1080, 1466]}
+  ],
+  "gancho": "Quem ficou com o trono?",
+  "stats": [["8", "temporadas"], ["73", "episódios"], ["2:52", "de resumo"]],
+  "rodape": "SIGA PARA <em>MAIS SÉRIES</em> ➜"
+}
