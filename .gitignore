@@ -7,3 +7,4 @@ supernatural/frames/
 supernatural/audio/tts/*.wav
 dexter/frames/
 dexter/audio/narr_raw.*
+dexter/audio/narration_v*.wav

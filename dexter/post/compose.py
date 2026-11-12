@@ -413,7 +413,7 @@ def render_frame(frames_dir, gf):
         bob = math.sin(lf / 9) * 8
         # se ha titulo grande no topo, o icone desce para nao cobrir o texto
         head_on = [h for h in EVS if h['sid'] == sh['id'] and h['t'] == 'head' and h['f'] <= lf < h['fu'] and h.get('y', 300) < 360]
-        iy = 300
+        iy = o.get('y', 300)
         if head_on:
             hh = head_img(head_on[-1]['text'], head_on[-1]['color'], head_on[-1].get('size', 110), head_on[-1].get('sub'))
             iy = head_on[-1].get('y', 300) + hh.height / 2 + 75

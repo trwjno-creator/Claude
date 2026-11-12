@@ -58,7 +58,9 @@ for pc in pieces[1:]:
     ramp = np.linspace(0, 1, xf)
     b = np.concatenate([b[:-xf], b[-xf:] * (1 - ramp) + pc[:xf] * ramp, pc[xf:]])
 def remap(t):
-    return t - sum(min(c1, max(c0, t)) - c0 for c0, c1 in cuts)
+    # cada corte remove (c1-c0) e o crossfade sobrepoe mais XF segundos
+    XF = xf / sr
+    return t - sum((min(c1, max(c0, t)) - c0) + (XF if t >= c1 else 0) for c0, c1 in cuts)
 words = [[w, remap(t0), remap(t1)] for w, t0, t1 in words]
 a = b
 print("pausas encurtadas:", len(cuts))
