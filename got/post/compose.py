@@ -447,7 +447,7 @@ if __name__ == '__main__':
     if rng_:
         a, b = rng_.split(':'); g0, g1 = int(a), int(b)
     cmd = ['ffmpeg', '-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-s', f'{W}x{H}', '-r', str(FPS), '-i', '-',
-           '-c:v', 'libx264', '-preset', 'slow', '-crf', '14', '-pix_fmt', 'yuv420p', '-profile:v', 'high', out]
+           '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '14', '-pix_fmt', 'yuv420p', '-profile:v', 'high', out]
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for gf in range(g0, g1):
         p.stdin.write(render_frame(frames_dir, gf).tobytes())

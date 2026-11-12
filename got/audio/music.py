@@ -215,5 +215,6 @@ music_gain = 10 ** (-17 / 20)
 mix = voice * 1.0 + mus * music_gain * duck + sfx
 peak = np.abs(mix).max()
 mix = mix / peak * 0.93
+np.save(f"{D}/mus_stem.npy", (mus * music_gain).astype(np.float32) / peak * 0.93)
 sf.write(f"{D}/final_mix.wav", np.stack([mix, mix], 1), SR, subtype='PCM_16')
 print("ok mix", TOTAL)
