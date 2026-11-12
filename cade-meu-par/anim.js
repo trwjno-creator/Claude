@@ -830,7 +830,7 @@ function scene6c(t) { // jogada de volta na máquina, liga e zoom
   ctx.restore();
   sfxText('BAM!', 340, 260, 78, t - 37.2, .1);
   if (t > 37.2 && t < 37.6) shakeAdd(spring(t - 37.2, 30, 6) * 10);
-  if (sp > 0) shakeAdd(Math.min(sp, 1.4) * 4 * Math.sin(t * 60));
+  if (sp > 0) shakeAdd(Math.min(sp, 1.4) * 4 * Math.sin(t * 60) * (1 - inv(39.0, 39.4, t)));
   if (t > 35.8 && t < 36.1) { ctx.fillStyle = `rgba(255,255,255,${1 - inv(35.8, 36.1, t)})`; ctx.fillRect(0, 0, W, H); }
   // entra o close da cena 1 (u negativo) -> loop perfeito em t=40
   if (t > 39.0) {
@@ -880,10 +880,10 @@ function draw(t) {
   drawScene(t);
   ctx.restore(); ctx.restore();
   if (SHAKE) { // tremores adicionais (impactos) aplicados à imagem já desenhada
-    const img = ctx.getImageData(0, 0, cv.width, cv.height);
-    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.fillStyle = '#000'; ctx.fillRect(0, 0, cv.width, cv.height);
-    ctx.putImageData(img, Math.round(SHAKE * SC * Math.sin(t * 77)), Math.round(SHAKE * SC * Math.cos(t * 69)));
-    ctx.setTransform(SC, 0, 0, SC, 0, 0);
+    OFFCTX.setTransform(1, 0, 0, 1, 0, 0); OFFCTX.drawImage(cv, 0, 0);
+    const a = Math.abs(SHAKE), m = 1 + 2 * (a + 1) / W * 1.8;
+    ctx.save(); ctx.translate(W / 2 + SHAKE * Math.sin(t * 77), H / 2 + SHAKE * Math.cos(t * 69)); ctx.scale(m, m);
+    ctx.drawImage(OFF, -W / 2, -H / 2, W, H); ctx.restore();
   }
   // legenda do gancho (início e fim, para o loop)
   if (t < 2) caption('POV: você é a\nmeia que sumiu', 270, 150, 48, { alpha: clamp((2 - t) / .15) });
