@@ -1,0 +1,22 @@
+{
+  "video": "../Dexter_2m30_9x16.mp4",
+  "saida": "capa_dexter.png",
+  "numero": "003",
+  "cor": "#E5172F",
+  "cor2": "#FFC93C",
+  "escuro": "#12030A",
+  "kicker": "RESUMO COMPLETO",
+  "titulo": ["DEX", "TER"],
+  "chips": ["SUSPENSE", "CRIME", "2006–2013"],
+  "heroi": {"img": "frames/heroi.png", "crop": [0, 505, 1080, 1000]},
+  "tag_heroi": "ASSISTA ATÉ O FIM",
+  "duracao": "2:30",
+  "cenas": [
+    {"img": "frames/cena1.png", "rotulo": "O contêiner", "crop": [0, 500, 1080, 1206]},
+    {"img": "frames/cena2.png", "rotulo": "O código", "crop": [0, 560, 1080, 1266]},
+    {"img": "frames/cena3.png", "rotulo": "O barco", "crop": [0, 480, 1080, 1186]}
+  ],
+  "gancho": "Quem é o Açougueiro?",
+  "stats": [["8", "temporadas"], ["96", "episódios"], ["2:30", "de resumo"]],
+  "rodape": "SIGA PARA <em>MAIS SÉRIES</em> ➜"
+}
