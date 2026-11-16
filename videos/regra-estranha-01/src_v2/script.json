@@ -1,0 +1,26 @@
+{
+ "takes": [
+  {"id": "N1", "who": "narr", "text": "Nesse mundo, a sua nuca esquenta toda vez que alguém pensa em você. E a minha nunca esquentou. Nem uma vez. Até a terça-feira passada. Aqui, todo mundo sabe quem tá pensando em quem. Quando a sua mãe lembra de você no trabalho, a nuca fica morninha. Quando o crush pensa em você, ela pega fogo. Na escola, ninguém precisa de bilhetinho. A Júlia brilhava o dia inteiro. O Pedro brilhava só de alguém olhar pra ele. Eu sou o Caio, tenho dezesseis anos, e eu sou o garoto da nuca fria. Todo dia eu colocava a mão ali, e nada."},
+  {"id": "P1", "who": "pedro", "text": "[awkwardly] Relaxa, cara. Um dia alguém pensa em você."},
+  {"id": "N2", "who": "narr", "text": "Fiz aniversário, nada. Me formei, nada. Cresci achando que ninguém nunca tinha pensado em mim. A única que não ligava pra isso era a minha vó Cida. Toda tarde, ela enrolava um cachecol vermelho no meu pescoço e falava:"},
+  {"id": "V1", "who": "vo", "text": "[warmly] Tá com friozinho? Põe o cachecol, meu amor."},
+  {"id": "N3", "who": "narr", "text": "Mesmo no verão. Mesmo com quarenta graus. Ela nunca deixava eu tirar. Nem pra dormir. Aí veio a terça-feira. A vó tava internada fazia uma semana. Eu tava no meio da aula, quando senti uma coisa que nunca tinha sentido na vida. [whispers] Frio. [normal] Um frio que começou na nuca e desceu pela espinha. Eu larguei tudo e corri pro hospital. Quando eu cheguei, a enfermeira tava fechando a porta do quarto dela. Foi aí que tudo fez sentido. A minha nuca nunca esquentou, porque ela nunca tinha esfriado. Desde o dia que eu nasci, alguém pensava em mim. Todo santo segundo. E aquele calor que eu sentia? Eu achava que era o cachecol. Hoje, eu uso o cachecol dela todo dia. Mesmo no verão. E às vezes, só às vezes, ele esquenta."}
+ ],
+ "scenes": [
+  {"id": "HOOK",   "take": "N1", "phrase": "Nesse mundo"},
+  {"id": "WORLD",  "take": "N1", "phrase": "Aqui, todo"},
+  {"id": "SCHOOL", "take": "N1", "phrase": "Na escola"},
+  {"id": "CAIO",   "take": "N1", "phrase": "Eu sou o Caio"},
+  {"id": "MONT",   "take": "N2", "phrase": "Fiz aniversário"},
+  {"id": "VO",     "take": "N2", "phrase": "A única"},
+  {"id": "SUMMER", "take": "N3", "phrase": "Mesmo no verão"},
+  {"id": "HOSP",   "take": "N3", "phrase": "Aí veio"},
+  {"id": "CLASS",  "take": "N3", "phrase": "Eu tava no meio"},
+  {"id": "COLD",   "take": "N3", "phrase": "Frio"},
+  {"id": "RUN",    "take": "N3", "phrase": "Eu larguei"},
+  {"id": "REVEAL", "take": "N3", "phrase": "Foi aí"},
+  {"id": "BABY",   "take": "N3", "phrase": "Desde o dia"},
+  {"id": "SCARF",  "take": "N3", "phrase": "E aquele calor"},
+  {"id": "END",    "take": "N3", "phrase": "Hoje, eu uso"}
+ ]
+}
