@@ -40,7 +40,7 @@ def noise(a, b, amp, smooth=200):
     n = int((b - a) * SR); y = np.convolve(rng.standard_normal(n), np.ones(smooth) / smooth, "same") * 12
     env = np.minimum(1, np.minimum(np.arange(n) / (0.3 * SR), (n - np.arange(n)) / (0.4 * SR))); add(sfx, a, y * env * amp)
 whoosh(P("E a minha") - 0.4); thump(P("Até a terça-feira"), 45, 0.5, 0.5)
-plim(P("sua mãe") + 0.4, 1318, 0.12); noise(P("pega fogo") - 0.1, P("pega fogo") + 1.0, 0.18, 40)
+plim(P("sua mãe") + 0.4, 1318, 0.12); noise(P("pega fogo", "e") + 0.05, P("pega fogo", "e") + 1.1, 0.07, 40)
 for w in ("A Júlia", "O Pedro", "olhar"): plim(P(w), 1568 if w != "olhar" else 2093)
 plim(P("Eu sou o Caio"), 1046, 0.12); whoosh(P("Relaxa") - 0.7, 0.5, 0.15)
 for ph in ("Fiz aniversário", "Me formei"): thump(P(ph) + 0.35, 70, 0.35, 0.3)
