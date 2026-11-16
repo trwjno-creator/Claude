@@ -1,0 +1,106 @@
+[
+ {
+  "id": "L1",
+  "who": "narr",
+  "scene": "S1",
+  "gap": 0.3,
+  "text": "Nesse mundo, sua nuca esquenta toda vez que alguém pensa em você.",
+  "tts": "[mysterious] Nesse mundo, sua nuca esquenta toda vez que alguém pensa em você."
+ },
+ {
+  "id": "L2",
+  "who": "narr",
+  "scene": "S1",
+  "gap": 0.25,
+  "text": "A minha nunca esquentou.",
+  "tts": "[sad] A minha nunca esquentou."
+ },
+ {
+  "id": "L3",
+  "who": "narr",
+  "scene": "S2",
+  "gap": 0.35,
+  "text": "Na escola, era uma festa. A nuca da Júlia brilhava o dia inteiro. O Pedro brilhava só de alguém olhar pra ele.",
+  "tts": "[playful] Na escola, era uma festa. A nuca da Júlia brilhava o dia inteiro. O Pedro brilhava só de alguém olhar pra ele."
+ },
+ {
+  "id": "L4",
+  "who": "narr",
+  "scene": "S3",
+  "gap": 0.25,
+  "text": "E a minha? Nada.",
+  "tts": "[sighs] E a minha? Nada."
+ },
+ {
+  "id": "L5",
+  "who": "pedro",
+  "scene": "S3",
+  "gap": 0.25,
+  "text": "Relaxa, cara. Um dia alguém pensa em você.",
+  "tts": "[awkwardly] Relaxa, cara. Um dia alguém pensa em você."
+ },
+ {
+  "id": "L6",
+  "who": "narr",
+  "scene": "S4",
+  "gap": 0.35,
+  "text": "Cresci achando que ninguém nunca tinha pensado em mim. Nem uma vez.",
+  "tts": "[sad] Cresci achando que ninguém nunca tinha pensado em mim. Nem uma vez."
+ },
+ {
+  "id": "L7",
+  "who": "narr",
+  "scene": "S5",
+  "gap": 0.35,
+  "text": "A única que não ligava pra isso era a minha vó. Toda tarde, ela fazia a mesma coisa.",
+  "tts": "[softly] A única que não ligava pra isso era a minha vó. Toda tarde, ela fazia a mesma coisa."
+ },
+ {
+  "id": "L8",
+  "who": "vo",
+  "scene": "S5",
+  "gap": 0.25,
+  "text": "Tá com friozinho? Põe o cachecol, meu amor.",
+  "tts": "[warmly] Tá com friozinho? Põe o cachecol, meu amor."
+ },
+ {
+  "id": "L9",
+  "who": "narr",
+  "scene": "S6",
+  "gap": 0.4,
+  "text": "Ano passado, a vó foi internada. Numa terça, no meio da aula, eu senti uma coisa que nunca tinha sentido.",
+  "tts": "[serious] Ano passado, a vó foi internada. Numa terça, no meio da aula, eu senti uma coisa que nunca tinha sentido."
+ },
+ {
+  "id": "L10",
+  "who": "narr",
+  "scene": "S7",
+  "gap": 0.7,
+  "text": "Frio.",
+  "tts": "[whispers] Frio."
+ },
+ {
+  "id": "L11",
+  "who": "narr",
+  "scene": "S8",
+  "gap": 0.8,
+  "text": "Foi aí que eu entendi. Minha nuca nunca esquentou... porque ela nunca tinha esfriado.",
+  "tts": "[emotional] Foi aí que eu entendi. Minha nuca nunca esquentou... porque ela nunca tinha esfriado."
+ },
+ {
+  "id": "L12",
+  "who": "narr",
+  "scene": "S8",
+  "gap": 0.3,
+  "text": "Desde o dia que eu nasci, alguém pensava em mim. Todo segundo.",
+  "tts": "[emotional] Desde o dia que eu nasci, alguém pensava em mim. Todo segundo."
+ },
+ {
+  "id": "L13",
+  "who": "narr",
+  "scene": "S9",
+  "gap": 0.5,
+  "text": "Hoje, eu uso o cachecol dela. E às vezes... só às vezes... ele esquenta.",
+  "tts": "[softly] Hoje, eu uso o cachecol dela. E às vezes... só às vezes... ele esquenta."
+ }
+]
